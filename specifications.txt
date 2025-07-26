@@ -1,0 +1,39 @@
+two registers, two memory arrays and a stack
+
+register one and two are one byte
+256 bytes sized stack
+one megabyte array for data
+one megabyte array for executable code
+
+register one (r1) is for the first argument
+register two (r2) is second argument and results
+
+stack:
+    $ push - pushes current data cell into stack
+    # pop - pops top of stack into current data cell
+    * invert - invert the order of the stack
+    % switch - moves the second item of stack to the top
+    ¬ fish - moves nth (r1) item of stack to the top
+
+data block:
+    basic brainfuck plus additions
+    index starts at 0
+
+    < and >    increment and decrement index
+    + and -    increment and decrement cell at index
+    , and .    reads and prints one character on current cell
+
+    : and ; push and pull cell into r1
+    : push and pull cell into r2
+    & : takes r1 and r2 and goto
+
+run block:
+    has index, starts at 0
+    run (!)  command switches execution to current index of run tape
+    not runnable characters are escaped
+    returns if byte reads !
+
+    ! : run and return
+    {} : increments and decrements pointer
+    ' and ": push and pull data cell to run cell
+    @ : takes r1 and r2 and goto
