@@ -1,12 +1,8 @@
-two registers, two memory arrays and a stack
+two memory arrays and a stack
 
-register one and two are one byte
 256 bytes sized stack
 one megabyte array for data
 one megabyte array for executable code
-
-register one (r1) is for the first argument
-register two (r2) is second argument and results
 
 stack:
     $ push - pushes current data cell into stack
@@ -23,9 +19,7 @@ data block:
     + and -    increment and decrement cell at index
     , and .    reads and prints one character on current cell
 
-    : and ; push and pull cell into r1
-    : push and pull cell into r2
-    & : takes r1 and r2 and goto
+    & : takes stack[top] as small and top-1 as big and goto
 
 run block:
     has index, starts at 0
@@ -36,4 +30,4 @@ run block:
     ! : run and return
     {} : increments and decrements pointer
     ' and ": push and pull data cell to run cell
-    @ : takes r1 and r2 and goto
+    @ : takes stack[top] as small and top-1 as big and goto
