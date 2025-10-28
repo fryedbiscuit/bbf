@@ -1,0 +1,53 @@
+one memory array and a stack
+
+300000 int memory (calloc)
+
+code is loaded into tape afer base layout
+
+memory layout (in int):
+	0 REG: general register
+	1 RG2: empty
+	2 RG3: empty
+	3 IND: index for data manipulation
+	4 EXE: execution pointer (size_t)
+	5 SIN: pointer for the start of data
+	6 SEX: pointer for start of execution
+	7 RET: stores EXE when you do a call
+	8 TOP: Stack pointer
+	9 STK: Recursion stack pointer
+	10 - 1009 STACK: storage for the recursion stack
+	1010 - 2009 RSTACK: storage for the general stack
+	2010 - Start of execution (set EXE to here)
+	- start of data (after code with single space)
+
+
+	data pointer starts after code, leaving a null byte in between
+run pointer moves to the right on every intruction
+
+
+stack:
+    $ push    pushes REG into stack
+    # pop     pop into REG
+    € peek    REG = TOP
+    % switch  switch top and scond of the stack
+
+register:
+	= set     REG = memory[IND]
+	_ get     memory[IND] = REG
+
+data:
+    > and <   increment and decrement IND
+    + and -   increment and decrement memory[IND]
+    ,         memory[IND] = getchar()
+    .         fputs(memory[IND])
+    0 - 9     memory[IND] = num
+	_         printf("%d",memory[ind])
+
+
+flow
+	[ ] loop  like brainfuck, implemeted as a stack
+	^ mark    push(IND)
+	@ call    RET = EXE and EXE = pop() (call)
+	* return  EXE = RET and continue (return)
+
+any other character ends execution
