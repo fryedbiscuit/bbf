@@ -3,7 +3,7 @@ all: bff
 bff: bff.c
 
 run: bff
-	./bff programs/hello.bf
+	./bff programs/file.bf
 
 clean:
 	rm test bff

@@ -110,28 +110,31 @@ int main(int argc, char** argv) {
 		int cell = MEMORY[EXE];
 		if (cell <= 255) {
 			switch (cell){
-				case '+': 
+				case '+': // Increase cell
 					MEMORY[IND]++;
 					break;
-				case '-': 
+				case '-': // decrease cell
 					MEMORY[IND]--;
 					break;
-				case '<': 
+				case '<': // move pointer left
 					IND--;
 					break;
-				case '>': 
+				case '>': // move pointer right
 					IND++;
 					break;
-				case ',':
+				case ',': // getchar
 					MEMORY[IND] = getchar();
 					break;
-				case '.':
+				case '.': // putchar
 					putchar(MEMORY[IND]);
 					break;
-				case '[':
+				case '?': // putchar
+					printf("%d",MEMORY[IND]);
+					break;
+				case '[': // start loop
 					push(recstk, MEMORY, EXE);
 					break;
-				case ']':
+				case ']': // if !=0 the goto [
 					if (MEMORY[IND] == 0){
 						pop(recstk,MEMORY);
 						break;
@@ -139,7 +142,25 @@ int main(int argc, char** argv) {
 						EXE = peek(recstk,MEMORY);
 						break;
 					};
-				case '\0':
+				case '=': // set register
+					REG = MEMORY[IND];
+					break;
+				case '_': // get register
+					MEMORY[IND] = REG;
+					break;
+				case '$': // push register into stack
+					push(stack,MEMORY,REG);
+					break;
+				case '#': // pop into reg
+					REG = pop(stack,MEMORY);
+					break;
+				case '&': // peek into reg
+					REG = peek(stack,MEMORY);
+					break;
+				case '%': // switch top with top-1
+					invert(stack,MEMORY);
+					break;
+				case '\0': // exit returning 0
 					exit(0);
 					break;
 				default:

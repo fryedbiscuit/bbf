@@ -25,10 +25,10 @@ memory layout (in int):
 run pointer moves to the right on every intruction
 
 
-stack:
+stack: operstes with the register
     $ push    pushes REG into stack
     # pop     pop into REG
-    € peek    REG = TOP
+    & peek    REG = TOP
     % switch  switch top and scond of the stack
 
 register:
@@ -46,8 +46,8 @@ data:
 
 flow
 	[ ] loop  like brainfuck, implemeted as a stack
-	^ mark    push(IND)
-	@ call    RET = EXE and EXE = pop() (call)
+	^ mark    REG = EXE
+	@ call    RET = EXE and EXE = REG (call)
 	* return  EXE = RET and continue (return)
 
 any other character ends execution
