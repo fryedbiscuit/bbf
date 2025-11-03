@@ -37,7 +37,7 @@ int peek(Stack* stack, int* buffer) {
 	return buffer[stack->top];
 };
 
-void invert(Stack* stack, int* buffer) {
+void sswitch(Stack* stack, int* buffer) {
 	int data1 = pop(stack, buffer);
 	int data2 = pop(stack, buffer);
 
@@ -158,7 +158,7 @@ int main(int argc, char** argv) {
 					REG = peek(stack,MEMORY);
 					break;
 				case '%': // switch top with top-1
-					invert(stack,MEMORY);
+					sswitch(stack,MEMORY);
 					break;
 				case '\0': // exit returning 0
 					exit(0);
